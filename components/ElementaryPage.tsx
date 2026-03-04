@@ -4,9 +4,7 @@ import Hero from './Hero';
 import OutstandingResults from './OutstandingResults';
 import StudentTestimonials from './StudentTestimonials';
 import CourseRoadmap from './CourseRoadmap';
-import TeacherCarousel from './TeacherCarousel';
 import HonorRoll from './HonorRoll';
-import ParentTestimonials from './ParentTestimonials';
 import ElementaryBanner from './ElementaryBanner';
 import { NewsItem, PageType } from '../types';
 import { ClipboardList } from 'lucide-react';
@@ -21,8 +19,6 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
   const ELEMENTARY_QUICK_LINKS = [
     { label: '課程班別', href: '#course-roadmap' },
     { label: '教學成果', href: '#outstanding-results' },
-    { label: '師資陣容', href: '#teacher-carousel' },
-    { label: '家長見證', href: '#testimonials' },
   ];
 
   return (
@@ -96,14 +92,8 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
       {/* 3. 課程規劃 (ID: course-roadmap) - Has internal green theme */}
       <CourseRoadmap />
 
-      {/* 4. 師資陣容 (ID: teacher-carousel) - Has internal green theme */}
-      <TeacherCarousel />
-
       {/* 5. 榮耀金榜 (Elementary Specific) */}
       <HonorRoll variant="elementary" theme="green" />
-
-      {/* 6. 口碑推薦 (Parent Testimonials) */}
-      <ParentTestimonials theme="green" />
 
     </div>
   );
