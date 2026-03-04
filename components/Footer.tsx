@@ -27,7 +27,7 @@ const BRANCHES: BranchGroup[] = [
       {
         name: '私立馬克堡美語學院文理短期補習班',
         license: '社補教社字第114034號',
-        address: '新北市板橋區海山路25號',
+        address: '新北市板橋區海山路25號2樓',
         phone: '2954 9991',
       }
     ]

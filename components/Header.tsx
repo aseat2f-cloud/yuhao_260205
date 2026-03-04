@@ -10,8 +10,8 @@ const NAV_ITEMS: NavItem[] = [
     dropdown: [
       { label: '課程班別', id: 'course-roadmap' },
       { label: '教學成果', id: 'outstanding-results' },
-      { label: '師資陣容', id: 'teacher-carousel' },
-      { label: '家長見證', id: 'testimonials' },
+      { label: '學員金榜', id: 'honor-roll' },
+      { label: '學員心得', id: 'testimonials' },
     ]
   },
   { 

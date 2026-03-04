@@ -30,8 +30,8 @@ const MobileFloatingNav: React.FC<MobileFloatingNavProps> = ({
         return [
           { label: '課程班別', href: '#course-roadmap' },
           { label: '教學成果', href: '#outstanding-results' },
-          { label: '師資陣容', href: '#teacher-carousel' },
-          { label: '家長見證', href: '#testimonials' },
+          { label: '學員金榜', href: '#honor-roll' },
+          { label: '學員心得', href: '#testimonials' },
         ];
       case 'junior':
         return [

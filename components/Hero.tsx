@@ -83,6 +83,18 @@ const Hero: React.FC<HeroProps> = ({
     ? "text-[50px] md:text-[75px] lg:text-[70px] xl:text-[80px]" 
     : "text-[50px] md:text-[75px] lg:text-[90px] xl:text-[95px]";
 
+  const handleSecondaryClick = (e: React.MouseEvent) => {
+    if (!secondaryBtnLink) return;
+    
+    if (secondaryBtnLink.startsWith('http')) {
+      // External link - don't prevent default, let it open
+      return;
+    }
+    
+    // Internal anchor
+    handleScrollTo(e, secondaryBtnLink);
+  };
+
   return (
     <section className="relative pt-[40px] pb-16 lg:pt-0 lg:pb-0 lg:h-[97vh] lg:min-h-[684px] overflow-hidden bg-white bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:24px_24px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-auto lg:h-full">
@@ -142,13 +154,25 @@ const Hero: React.FC<HeroProps> = ({
                     <ArrowRight size={20} />
                   </a>
                   
-                  <button 
-                    onClick={(e) => secondaryBtnLink ? handleScrollTo(e, secondaryBtnLink) : undefined}
-                    className={`w-full sm:w-auto px-6 py-4 bg-white text-${t}-600 border border-${t}-600 rounded-xl font-bold shadow-sm hover:bg-${t}-50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2`}
-                  >
-                    {secLabel}
-                    {secIcon}
-                  </button>
+                  {secondaryBtnLink?.startsWith('http') ? (
+                    <a 
+                      href={secondaryBtnLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full sm:w-auto px-6 py-4 bg-white text-${t}-600 border border-${t}-600 rounded-xl font-bold shadow-sm hover:bg-${t}-50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2`}
+                    >
+                      {secLabel}
+                      {secIcon}
+                    </a>
+                  ) : (
+                    <button 
+                      onClick={handleSecondaryClick}
+                      className={`w-full sm:w-auto px-6 py-4 bg-white text-${t}-600 border border-${t}-600 rounded-xl font-bold shadow-sm hover:bg-${t}-50 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2`}
+                    >
+                      {secLabel}
+                      {secIcon}
+                    </button>
+                  )}
                 </div>
 
                 {/* Quick Links */}

@@ -7,7 +7,7 @@ import CourseRoadmap from './CourseRoadmap';
 import HonorRoll from './HonorRoll';
 import ElementaryBanner from './ElementaryBanner';
 import { NewsItem, PageType } from '../types';
-import { ClipboardList } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 interface ElementaryPageProps {
   heroNews: NewsItem[];
@@ -19,6 +19,8 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
   const ELEMENTARY_QUICK_LINKS = [
     { label: '課程班別', href: '#course-roadmap' },
     { label: '教學成果', href: '#outstanding-results' },
+    { label: '學員金榜', href: '#honor-roll' },
+    { label: '學員心得', href: '#testimonials' },
   ];
 
   return (
@@ -76,8 +78,9 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
         showQuickLinks={true}
         quickLinks={ELEMENTARY_QUICK_LINKS}
         theme="green"
-        secondaryBtnLabel="學習痛點分析"
-        secondaryBtnIcon={<ClipboardList size={20} />}
+        secondaryBtnLabel="即時線上詢課"
+        secondaryBtnIcon={<MessageCircle size={20} />}
+        secondaryBtnLink="https://lin.ee/f53mxGL"
       />
 
       {/* New Banner Section */}
