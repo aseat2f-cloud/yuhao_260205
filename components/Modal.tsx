@@ -6,10 +6,11 @@ import { X } from 'lucide-react';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
+  title?: React.ReactNode;
   children: React.ReactNode;
   maxWidth?: string;
   hideHeader?: boolean;
+  headerClassName?: string;
 }
 
 const Modal: React.FC<ModalProps> = ({ 
@@ -18,7 +19,8 @@ const Modal: React.FC<ModalProps> = ({
   title, 
   children, 
   maxWidth = 'max-w-2xl',
-  hideHeader = false 
+  hideHeader = false,
+  headerClassName = 'bg-white'
 }) => {
   const [mounted, setMounted] = useState(false);
 
@@ -45,11 +47,13 @@ const Modal: React.FC<ModalProps> = ({
       <div className={`relative bg-white rounded-2xl w-full ${maxWidth} max-h-[90vh] flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200 overflow-hidden my-auto mx-auto`}>
         
         {!hideHeader && (
-          <div className="flex items-center justify-between p-4 border-b border-gray-100 shrink-0">
-            <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+          <div className={`flex items-center justify-between p-4 border-b border-gray-100 shrink-0 relative ${headerClassName}`}>
+            <div className="flex-1 text-center">
+              <h3 className={`text-xl font-bold ${headerClassName.includes('bg-white') ? 'text-slate-900' : 'text-white'}`}>{title}</h3>
+            </div>
             <button 
               onClick={onClose}
-              className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-500"
+              className={`p-2 rounded-full transition-colors absolute right-4 ${headerClassName.includes('bg-white') ? 'hover:bg-slate-100 text-slate-500' : 'hover:bg-white/20 text-white'}`}
             >
               <X size={24} />
             </button>

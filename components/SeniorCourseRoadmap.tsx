@@ -500,6 +500,7 @@ const SeniorCourseRoadmap: React.FC = () => {
         onClose={() => setSelectedClass(null)}
         title={selectedClass ? (modalMode === 'schedule' ? `${selectedClass.name} - 課程表` : `${selectedClass.name} - 課程介紹`) : ''}
         maxWidth="max-w-4xl"
+        headerClassName="bg-[#5FA8D3]"
       >
         {selectedClass && modalMode === 'schedule' && (
           <div className="space-y-6">
@@ -519,7 +520,7 @@ const SeniorCourseRoadmap: React.FC = () => {
              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left min-w-[600px]">
-                       <thead className="bg-slate-100 text-slate-700 font-bold uppercase">
+                       <thead className="bg-[#5FA8D3] text-white font-bold uppercase">
                           <tr>
                              <th className="px-4 py-3 whitespace-nowrap">日期</th>
                              <th className="px-4 py-3 whitespace-nowrap">星期</th>

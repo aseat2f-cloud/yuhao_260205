@@ -761,6 +761,7 @@ const CourseRoadmap: React.FC = () => {
             : `${selectedClass.name} - 課程介紹`
         ) : ''}
         maxWidth="max-w-4xl"
+        headerClassName="bg-[#4CAF50]"
       >
         {selectedClass && modalMode === 'schedule' && (
           <div className="space-y-6">
@@ -813,7 +814,7 @@ const CourseRoadmap: React.FC = () => {
              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left min-w-[600px]">
-                       <thead className="bg-slate-100 text-slate-700 font-bold uppercase">
+                       <thead className="bg-[#4CAF50] text-white font-bold uppercase">
                           <tr>
                              {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
                                <>
