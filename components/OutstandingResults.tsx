@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Trophy, Users, Star, GraduationCap, TrendingUp, Award, BookCheck, ThumbsUp } from 'lucide-react';
+import { Trophy, Users, Star, GraduationCap, TrendingUp, Award, BookCheck, ThumbsUp, Shield } from 'lucide-react';
 
-const STATS = [
+const JUNIOR_STATS = [
   { icon: <Trophy />, value: '1,250+', label: '錄取第一志願', color: 'text-yellow-600', bg: 'bg-yellow-50' },
   { icon: <Star />, value: '380+', label: '5A++ 滿級分', color: 'text-red-600', bg: 'bg-red-50' },
   { icon: <GraduationCap />, value: '100%', label: '公立高中錄取率', color: 'text-blue-600', bg: 'bg-blue-50' },
@@ -10,6 +10,24 @@ const STATS = [
   { icon: <TrendingUp />, value: '98%', label: '成績進步率', color: 'text-green-600', bg: 'bg-green-50' },
   { icon: <Award />, value: 'No.1', label: '奧林匹亞金牌', color: 'text-purple-600', bg: 'bg-purple-50' },
   { icon: <BookCheck />, value: '250+', label: '醫科牙醫錄取', color: 'text-teal-600', bg: 'bg-teal-50' },
+  { icon: <ThumbsUp />, value: '4.9', label: '家長滿意度', color: 'text-orange-600', bg: 'bg-orange-50' },
+];
+
+const ELEMENTARY_STATS = [
+  { icon: <Trophy />, value: '95%', label: '通過劍橋英檢', color: 'text-purple-600', bg: 'bg-purple-50' },
+  { icon: <Shield />, value: '90%+', label: 'KET/PET通過', color: 'text-blue-600', bg: 'bg-blue-50' },
+  { icon: <GraduationCap />, value: '90%+', label: '公立資優錄取率', color: 'text-yellow-600', bg: 'bg-yellow-50' },
+  { icon: <Star />, value: '90%+', label: '私立名校錄取率', color: 'text-teal-600', bg: 'bg-teal-50' },
+  { icon: <TrendingUp />, value: '98%', label: '成績進步率', color: 'text-green-600', bg: 'bg-green-50' },
+  { icon: <ThumbsUp />, value: '4.9', label: '家長滿意度', color: 'text-orange-600', bg: 'bg-orange-50' },
+];
+
+const SENIOR_STATS = [
+  { icon: <Trophy />, value: '95%', label: '國立大學錄取率', color: 'text-yellow-600', bg: 'bg-yellow-50' },
+  { icon: <GraduationCap />, value: '45%', label: '台清交成政錄取', color: 'text-blue-600', bg: 'bg-blue-50' },
+  { icon: <BookCheck />, value: '120+', label: '醫學系錄取人次', color: 'text-teal-600', bg: 'bg-teal-50' },
+  { icon: <Star />, value: '92%', label: '頂標/前標達成率', color: 'text-red-600', bg: 'bg-red-50' },
+  { icon: <TrendingUp />, value: '98%', label: '成績進步率', color: 'text-green-600', bg: 'bg-green-50' },
   { icon: <ThumbsUp />, value: '4.9', label: '家長滿意度', color: 'text-orange-600', bg: 'bg-orange-50' },
 ];
 
@@ -189,6 +207,10 @@ const OutstandingResults: React.FC<OutstandingResultsProps> = ({ theme = 'primar
   const t = theme === 'primary' ? 'primary' : theme;
   const [replayCounts, setReplayCounts] = useState<Record<number, number>>({});
 
+  const statsToRender = theme === 'green' ? ELEMENTARY_STATS : 
+                        theme === 'blue' ? JUNIOR_STATS :
+                        theme === 'purple' ? SENIOR_STATS : JUNIOR_STATS;
+
   const handleReplay = (index: number) => {
     setReplayCounts(prev => ({
       ...prev,
@@ -217,8 +239,8 @@ const OutstandingResults: React.FC<OutstandingResultsProps> = ({ theme = 'primar
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          {STATS.map((stat, index) => (
+        <div className={`grid gap-4 md:gap-8 ${statsToRender.length === 6 ? 'grid-cols-2 md:grid-cols-3' : 'grid-cols-2 md:grid-cols-4'}`}>
+          {statsToRender.map((stat, index) => (
             <div 
               key={index} 
               onClick={() => handleReplay(index)}
