@@ -111,8 +111,8 @@ const CourseRoadmap: React.FC = () => {
       icon: <BookOpen size={20} />,
       color: 'text-orange-500',
       classes: [
-        { name: '閱讀寫作班', desc: '結合經典文學導讀與創意寫作，提升表達力與文采', age: '小二 ~ 小六', time: '週六 上午', objectives: '培養閱讀興趣，激發寫作靈感，能流暢表達個人想法與情感。', target: '對寫作感到困難 or 希望提升文采的學生。', features: ['經典文學作品賞析', '感官摹寫與修辭練習', '創意引導與聯想訓練', '佳作觀摩與互評'], roadmap: ['基礎語句練習', '段落結構鋪陳', '完整篇章創作'] },
-        { name: '閱讀素養班', desc: '長文閱讀理解訓練，培養批判性思考與分析能力', age: '小三 ~ 小六', time: '週六 下午', objectives: '提升長篇文章閱讀速度與理解力，培養擷取資訊、統整分析與批判思考的能力。', target: '閱讀速度慢、抓不到重點 or 希望能深入解讀文本的學生。', features: ['多元文本閱讀材料', '閱讀理解策略教學', 'PISA 題型實戰演練', '議題探討與思辨'], roadmap: ['擷取訊息能力', '統整解釋能力', '省思評鑑能力'] },
+        { name: '閱讀寫作班', desc: '結合經典文學導讀與創意寫作，提升表達力與文采', age: '小四~小六', time: '週六 上午', objectives: '培養閱讀興趣，激發寫作靈感，能流暢表達個人想法與情感。', target: '對寫作感到困難 or 希望提升文采的學生。', features: ['經典文學作品賞析', '感官摹寫與修辭練習', '創意引導與聯想訓練', '佳作觀摩與互評'], roadmap: ['基礎語句練習', '段落結構鋪陳', '完整篇章創作'] },
+        { name: '閱讀素養班', desc: '長文閱讀理解訓練，培養批判性思考與分析能力', age: '小一~小二', time: '週六 下午', objectives: '提升長篇文章閱讀速度與理解力，培養擷取資訊、統統分析與批判思考的能力。', target: '閱讀速度慢、抓不到重點 or 希望能深入解讀文本的學生。', features: ['多元文本閱讀材料', '閱讀理解策略教學', 'PISA 題型實戰演練', '議題探討與思辨'], roadmap: ['擷取訊息能力', '統整解釋能力', '省思評鑑能力'] },
       ]
     },
     {
@@ -241,6 +241,10 @@ const CourseRoadmap: React.FC = () => {
     setModalMode('schedule');
     if (cls.name === '進度數學班') {
       setSelectedGrade('三年級');
+    } else if (cls.name === '閱讀素養班') {
+      setSelectedGrade('一年級');
+    } else if (cls.name === '閱讀寫作班') {
+      setSelectedGrade('中年級');
     }
   };
 
@@ -289,6 +293,102 @@ const CourseRoadmap: React.FC = () => {
       return units.map((name, i) => ({
         unit: `單元${['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五'][i]}`,
         courseName: name
+      }));
+    }
+
+    // Specific data for Reading Literacy
+    if (cls.name === '閱讀素養班') {
+      const literacyData: Record<string, {topic: string, category: string}[]> = {
+        '一年級': [
+          { topic: '魔術師', category: '新詩讀寫' },
+          { topic: '釣魚', category: '新詩讀寫' },
+          { topic: '蛇', category: '新詩讀寫' },
+          { topic: '「樂樂遊樂場」使用規則', category: '應用閱讀' },
+          { topic: '去遊樂場玩耍', category: '段文寫作' },
+          { topic: '伊索寓言：獅子和熊（一）', category: '寓言故事' },
+          { topic: '標點符號大解密', category: '標點符號' },
+          { topic: '楊喚詩選：小螞蟻', category: '新詩讀寫' },
+          { topic: '唱童謠，學作文：小蜜蜂', category: '新詩讀寫' },
+          { topic: '新詩讀寫：輕輕的', category: '新詩讀寫' },
+          { topic: '楊喚詩選：七彩的虹', category: '新詩讀寫' },
+          { topic: '並列句型練習', category: '句型練習' },
+          { topic: '品德故事：胖乎乎的小手', category: '品德故事' },
+          { topic: '轉折句型練習', category: '句型練習' },
+          { topic: '疊字詞練習', category: '疊字詞' },
+          { topic: '生命教育：小壁虎長尾巴', category: '生命教育' },
+          { topic: '看圖說故事：放學路上', category: '看圖寫作' },
+          { topic: '看圖說故事：勤勞的兔子', category: '看圖寫作' },
+        ],
+        '二年級': [
+          { topic: '世界兒童經典文學《夏綠蒂的網》：小豬韋伯', category: '閱讀寫作' },
+          { topic: '譬喻法描寫人體部位', category: '修辭法' },
+          { topic: '世界兒童經典文學《夏綠蒂的網》：每隻豬都需要朋友', category: '閱讀寫作' },
+          { topic: '句型練習', category: '寫作技巧' },
+          { topic: '世界兒童經典文學《夏綠蒂的網》：被宰殺的命運', category: '閱讀寫作' },
+          { topic: '運用聲音寫季節', category: '修辭法' },
+          { topic: '世界兒童經典文學《夏綠蒂的網》：聰慧的夏綠蒂', category: '閱讀寫作' },
+          { topic: '情理兼備的表達技巧', category: '寫作技巧' },
+          { topic: '世界兒童經典文學《夏綠蒂的網》：榮耀之豬', category: '閱讀寫作' },
+          { topic: '按照順序寫景物', category: '寫作技巧' },
+          { topic: '世界兒童經典文學《夏綠蒂的網》：用不結束的友誼', category: '閱讀寫作' },
+          { topic: '視覺摹寫練習：描寫人物外觀（一）', category: '修辭法' },
+          { topic: '讀後心得撰寫', category: '讀後心得' },
+          { topic: '《寄給貓巧可的信》解謎冒險遊戲（一）', category: '閱讀寫作' },
+          { topic: '《寄給貓巧可的信》解謎冒險遊戲（二）', category: '閱讀寫作' },
+          { topic: '《寄給貓巧可的信》解謎冒險遊戲（三）', category: '閱讀寫作' },
+          { topic: '《寄給貓巧可的信》解謎冒險遊戲（四）', category: '閱讀寫作' },
+          { topic: '《寄給貓巧可的信》解謎冒險遊戲（五）', category: '閱讀寫作' },
+        ]
+      };
+      const units = literacyData[selectedGrade] || [];
+      return units.map((item, i) => ({
+        unit: i + 1,
+        courseName: item.topic,
+        category: item.category
+      }));
+    }
+
+    // Specific data for Reading and Writing
+    if (cls.name === '閱讀寫作班') {
+      const writingData: Record<string, {topic: string, category: string}[]> = {
+        '中年級': [
+          { topic: '〈科學怪人——北極奇遇記〉', category: '閱讀理解＋詞彙' },
+          { topic: '氛圍感寫作技巧（寫景）', category: '短文寫作' },
+          { topic: '〈科學怪人——躊躇滿志的慘綠少年〉', category: '閱讀理解＋詞彙' },
+          { topic: '科學腦與文學腦的轉換練習', category: '寫作技巧' },
+          { topic: '作文：颱風過境', category: '長篇作文' },
+          { topic: '〈科學怪人——你好！世界〉', category: '閱讀理解＋詞彙' },
+          { topic: '情緒的書寫技巧（抒情）', category: '短文寫作' },
+          { topic: '〈科學怪人——可望而不可及的溫暖〉', category: '閱讀理解＋詞彙' },
+          { topic: '起承轉合的敘事結構', category: '寫作技巧' },
+          { topic: '人性的反思', category: '閱讀思辨' },
+          { topic: '作文：發考卷的時候', category: '長篇作文' },
+          { topic: '〈科學怪人——威廉之死〉', category: '閱讀理解＋詞彙' },
+          { topic: '作文：是否應該再造一個女性怪物', category: '長篇作文' },
+          { topic: '〈科學怪人——孤獨的靈魂〉', category: '閱讀理解＋詞彙' },
+        ],
+        '高年級': [
+          { topic: '近體詩的故事', category: '國學常識' },
+          { topic: '論語與孔子', category: '文言文' },
+          { topic: '月餅與朱元璋起義', category: '文化常識' },
+          { topic: '現代詩欣賞', category: '新詩賞析' },
+          { topic: '短文閱讀精粹', category: '短文賞析' },
+          { topic: '唐傳奇——李娃傳', category: '長文賞析' },
+          { topic: '唐傳奇——杜子春傳', category: '長文賞析' },
+          { topic: '〈中學生報：少年犯罪怎麼罰？〉', category: '讀報與思辨' },
+          { topic: '亂世奸雄——曹操', category: '長文賞析' },
+          { topic: '仁義之君——劉備', category: '長文賞析' },
+          { topic: '《世說新語》故事選', category: '文言文' },
+          { topic: '《世說新語》成語選', category: '文言文' },
+          { topic: '黃粱一夢', category: '成語典故' },
+          { topic: '慎選朋友的勇氣', category: '讀報與思辨' },
+        ]
+      };
+      const units = writingData[selectedGrade] || [];
+      return units.map((item, i) => ({
+        unit: i + 1,
+        courseName: item.topic,
+        category: item.category
       }));
     }
 
@@ -664,10 +764,15 @@ const CourseRoadmap: React.FC = () => {
       >
         {selectedClass && modalMode === 'schedule' && (
           <div className="space-y-6">
-             {/* Grade Selection for Progress Math */}
-             {selectedClass.name === '進度數學班' && (
+             {/* Grade Selection */}
+             {(selectedClass.name === '進度數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
                 <div className="flex flex-wrap gap-2 p-1 bg-slate-100 rounded-xl">
-                   {['三年級', '四年級', '五年級', '六年級'].map((grade) => (
+                   {(selectedClass.name === '進度數學班' 
+                     ? ['三年級', '四年級', '五年級', '六年級'] 
+                     : selectedClass.name === '閱讀素養班'
+                     ? ['一年級', '二年級']
+                     : ['中年級', '高年級']
+                   ).map((grade) => (
                       <button
                         key={grade}
                         onClick={() => setSelectedGrade(grade)}
@@ -686,11 +791,14 @@ const CourseRoadmap: React.FC = () => {
              {/* Info Header */}
              <div className="flex flex-wrap gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100 items-center">
                 <div className="flex items-center gap-2">
-                   {selectedClass.name !== '進度數學班' && (
+                   {!(selectedClass.name === '進度數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
                      <span className="text-slate-500 font-bold text-sm">上課對象：</span>
                    )}
-                   <span className={`text-slate-900 font-bold ${selectedClass.name === '進度數學班' ? 'text-xl' : 'text-medium'}`}>
-                     {selectedClass.name === '進度數學班' ? `${selectedGrade}進度資優班` : selectedClass.age}
+                   <span className={`text-slate-900 font-bold ${(selectedClass.name === '進度數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') ? 'text-xl' : 'text-medium'}`}>
+                     {selectedClass.name === '進度數學班' ? `${selectedGrade}進度資優班` : 
+                      selectedClass.name === '閱讀素養班' ? `${selectedGrade}閱讀素養班` : 
+                      selectedClass.name === '閱讀寫作班' ? `${selectedGrade}閱讀寫作班` : 
+                      selectedClass.age}
                    </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -707,21 +815,27 @@ const CourseRoadmap: React.FC = () => {
                     <table className="w-full text-sm text-left min-w-[600px]">
                        <thead className="bg-slate-100 text-slate-700 font-bold uppercase">
                           <tr>
-                             {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') && (
+                             {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
                                <>
                                  <th className="px-4 py-3 whitespace-nowrap">日期</th>
                                  <th className="px-4 py-3 whitespace-nowrap">星期</th>
                                  <th className="px-4 py-3 whitespace-nowrap">時間</th>
                                </>
                              )}
-                             <th className="px-4 py-3 whitespace-nowrap">單元名稱</th>
-                             <th className="px-4 py-3 whitespace-nowrap">{(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') ? '課程規劃' : '課程名稱'}</th>
+                             <th className="px-4 py-3 whitespace-nowrap">單元</th>
+                             <th className="px-4 py-3 whitespace-nowrap">
+                               {(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') ? '課程規劃' : 
+                                (selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') ? '主題' : '課程名稱'}
+                             </th>
+                             {(selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
+                               <th className="px-4 py-3 whitespace-nowrap">類別</th>
+                             )}
                           </tr>
                        </thead>
                        <tbody className="divide-y divide-slate-100">
                           {generateSchedule(selectedClass).map((row: any, idx) => (
                              <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                                {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') && (
+                                {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班' || selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
                                   <>
                                     <td className="px-4 py-3 font-medium text-slate-900">{row.date}</td>
                                     <td className="px-4 py-3 text-slate-500">{row.day}</td>
@@ -730,6 +844,9 @@ const CourseRoadmap: React.FC = () => {
                                 )}
                                 <td className="px-4 py-3 text-green-600 font-bold">{row.unit}</td>
                                 <td className="px-4 py-3 text-slate-700">{row.courseName}</td>
+                                {(selectedClass.name === '閱讀素養班' || selectedClass.name === '閱讀寫作班') && (
+                                  <td className="px-4 py-3 text-slate-500">{row.category}</td>
+                                )}
                              </tr>
                           ))}
                        </tbody>
