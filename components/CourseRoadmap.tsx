@@ -251,22 +251,54 @@ const CourseRoadmap: React.FC = () => {
 
   // Generate Mock Schedule Data
   const generateSchedule = (cls: any) => {
+    // Specific data for Progress Math
+    if (cls.name === '進度數學班') {
+      const gradeData: Record<string, string[]> = {
+        '三年級': [
+          '10000以內的數', '四位數的加減', '數線', '毫米', '乘法', '分數(一)', '除法(一)', '圓', '除法(二)', '小數',
+          '公斤與公克', '時間', '公升與毫升', '兩步驟應用問題', '角', '分數(二)', '正方形與長方形', '面積', '生活中的表格', '找規律'
+        ],
+        '四年級': [
+          '一億以內的數', '整數的乘法', '整數的除法', '角度', '假分數與帶分數', '公里', '兩步驟問題與併式', '三角形與全等', '二位小數', '概數',
+          '四則運算', '時間', '四邊形', '周長與面積', '統計圖表', '體積', '小數的乘法', '等值分數', '找規律'
+        ],
+        '五年級': [
+          '倍數與因數', '四則運算', '公倍數與公因數', '平面圖形', '擴分、約分和通分', '面積', '數的十進位結構', '分數', '小數', '扇形與圓心角',
+          '生活中的大單位', '體積', '立體形體', '時間的乘除', '比率與百分率', '表面積', '容積', '線對稱圖形', '折線圖'
+        ],
+        '六年級': [
+          '最大公因數與最小公倍數', '分數的除法', '長條圖與折線圖', '小數的除法', '圓和扇形的周長', '比、比值與正比', '縮放圖和比例尺', '圓和扇形的面積', '怎樣解題(一)', '等量公理',
+          '分數與小數的四則運算', '角柱和圓柱', '速率', '基準量與比較量', '怎樣解題(二)', '圓形圖'
+        ]
+      };
+
+      const units = gradeData[selectedGrade] || [];
+      return units.map((name, i) => ({
+        unit: `單元${['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'][i]}`,
+        courseName: name
+      }));
+    }
+
+    // Specific data for Seed Advanced Math and Advanced Math
+    if (cls.name === '種子超前數學班' || cls.name === '超前數學班') {
+      const units = [
+        '整數的四則運算', '因數與倍數', '小數的四則運算', '分數的四則運算', '比與比值',
+        '比率與百分率', '速率的應用', '體積與容積', '圓與扇形', '形體關係與柱體表面積',
+        '縮圖、放大圖與比例尺', '圖解法', '等量公理', '傳統問題', '一元一次方程式及應用問題'
+      ];
+      return units.map((name, i) => ({
+        unit: `單元${['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五'][i]}`,
+        courseName: name
+      }));
+    }
+
     const daysMap: Record<string, string> = { '週一': 'Mon', '週二': 'Tue', '週三': 'Wed', '週四': 'Thu', '週五': 'Fri', '週六': 'Sat', '週日': 'Sun' };
     let primaryDay = '週六';
     
-    // Logic for Progress Math multiple grades
-    if (cls.name === '進度數學班') {
-      if (selectedGrade === '三年級' || selectedGrade === '四年級') {
-        primaryDay = '週三';
-      } else {
-        primaryDay = '週二';
-      }
-    } else {
-      for (const d of Object.keys(daysMap)) {
-        if (cls.time.includes(d)) {
-          primaryDay = d;
-          break;
-        }
+    for (const d of Object.keys(daysMap)) {
+      if (cls.time.includes(d)) {
+        primaryDay = d;
+        break;
       }
     }
 
@@ -311,6 +343,31 @@ const CourseRoadmap: React.FC = () => {
     "請假請提前 24 小時告知，以利安排補課。",
     "補習班保有課程異動之權利，如有變動將另行通知。"
   ];
+
+  const renderTimeWithCircles = (timeStr: string) => {
+    if (!timeStr.includes('週')) return <span>{timeStr}</span>;
+
+    const parts = timeStr.split(' ');
+    const dayPart = parts[0];
+    const suffix = parts.slice(1).join(' ');
+
+    // Remove '週' and split by '/'
+    const days = dayPart.replace('週', '').split('/');
+
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-slate-500 font-bold text-sm">週</span>
+        <div className="flex gap-1.5 items-center">
+          {days.map((d, i) => (
+            <span key={i} className="min-w-[2.25rem] h-9 px-2 flex items-center justify-center rounded-full border-2 border-green-600 text-green-700 font-bold text-sm bg-green-50/50">
+              {d}
+            </span>
+          ))}
+        </div>
+        {suffix && <span className="text-slate-900 font-medium ml-1">{suffix}</span>}
+      </div>
+    );
+  };
 
   return (
     <section ref={sectionRef} id="course-roadmap" className="py-20 bg-green-600 scroll-mt-24 relative overflow-hidden">
@@ -598,7 +655,11 @@ const CourseRoadmap: React.FC = () => {
       <Modal
         isOpen={!!selectedClass}
         onClose={() => setSelectedClass(null)}
-        title={selectedClass ? (modalMode === 'schedule' ? `${selectedClass.name} - 課程表` : `${selectedClass.name} - 課程介紹`) : ''}
+        title={selectedClass ? (
+          modalMode === 'schedule' 
+            ? `${selectedClass.name} - 課程表`
+            : `${selectedClass.name} - 課程介紹`
+        ) : ''}
         maxWidth="max-w-4xl"
       >
         {selectedClass && modalMode === 'schedule' && (
@@ -623,14 +684,20 @@ const CourseRoadmap: React.FC = () => {
              )}
 
              {/* Info Header */}
-             <div className="flex flex-wrap gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+             <div className="flex flex-wrap gap-4 p-4 bg-slate-50 rounded-xl border border-slate-100 items-center">
                 <div className="flex items-center gap-2">
-                   <span className="text-slate-500 font-bold text-sm">上課對象：</span>
-                   <span className="text-slate-900 font-medium">{selectedClass.age}</span>
+                   {selectedClass.name !== '進度數學班' && (
+                     <span className="text-slate-500 font-bold text-sm">上課對象：</span>
+                   )}
+                   <span className={`text-slate-900 font-bold ${selectedClass.name === '進度數學班' ? 'text-xl' : 'text-medium'}`}>
+                     {selectedClass.name === '進度數學班' ? `${selectedGrade}進度資優班` : selectedClass.age}
+                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                    <span className="text-slate-500 font-bold text-sm">上課時間：</span>
-                   <span className="text-slate-900 font-medium">{selectedClass.time}</span>
+                   <div className="text-slate-900 font-medium">
+                     {renderTimeWithCircles(selectedClass.time)}
+                   </div>
                 </div>
              </div>
 
@@ -640,19 +707,27 @@ const CourseRoadmap: React.FC = () => {
                     <table className="w-full text-sm text-left min-w-[600px]">
                        <thead className="bg-slate-100 text-slate-700 font-bold uppercase">
                           <tr>
-                             <th className="px-4 py-3 whitespace-nowrap">日期</th>
-                             <th className="px-4 py-3 whitespace-nowrap">星期</th>
-                             <th className="px-4 py-3 whitespace-nowrap">時間</th>
+                             {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') && (
+                               <>
+                                 <th className="px-4 py-3 whitespace-nowrap">日期</th>
+                                 <th className="px-4 py-3 whitespace-nowrap">星期</th>
+                                 <th className="px-4 py-3 whitespace-nowrap">時間</th>
+                               </>
+                             )}
                              <th className="px-4 py-3 whitespace-nowrap">單元名稱</th>
-                             <th className="px-4 py-3 whitespace-nowrap">課程名稱</th>
+                             <th className="px-4 py-3 whitespace-nowrap">{(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') ? '課程規劃' : '課程名稱'}</th>
                           </tr>
                        </thead>
                        <tbody className="divide-y divide-slate-100">
-                          {generateSchedule(selectedClass).map((row, idx) => (
+                          {generateSchedule(selectedClass).map((row: any, idx) => (
                              <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                                <td className="px-4 py-3 font-medium text-slate-900">{row.date}</td>
-                                <td className="px-4 py-3 text-slate-500">{row.day}</td>
-                                <td className="px-4 py-3 text-slate-500">{row.time}</td>
+                                {!(selectedClass.name === '進度數學班' || selectedClass.name === '種子超前數學班' || selectedClass.name === '超前數學班') && (
+                                  <>
+                                    <td className="px-4 py-3 font-medium text-slate-900">{row.date}</td>
+                                    <td className="px-4 py-3 text-slate-500">{row.day}</td>
+                                    <td className="px-4 py-3 text-slate-500">{row.time}</td>
+                                  </>
+                                )}
                                 <td className="px-4 py-3 text-green-600 font-bold">{row.unit}</td>
                                 <td className="px-4 py-3 text-slate-700">{row.courseName}</td>
                              </tr>
