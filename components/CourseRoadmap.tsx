@@ -13,6 +13,12 @@ interface ClassInfo {
   target: string;
   features: string[];
   roadmap: string[];
+  gradeHighlights?: Record<string, string[]>;
+  gradeDescs?: Record<string, string>;
+  gradeObjectives?: Record<string, string>;
+  gradeTargets?: Record<string, string>;
+  gradeFeatures?: Record<string, string[]>;
+  gradeRoadmaps?: Record<string, string[]>;
 }
 
 const BROCHURE_IMAGES = [
@@ -29,6 +35,7 @@ const CourseRoadmap: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState<ClassInfo | null>(null);
   const [modalMode, setModalMode] = useState<'schedule' | 'detail'>('schedule');
   const [selectedGrade, setSelectedGrade] = useState<string>('三年級');
+  const [activeDetailTab, setActiveDetailTab] = useState<'main' | 'highlights' | 'features' | 'roadmap'>('main');
 
   const timelineRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -111,8 +118,88 @@ const CourseRoadmap: React.FC = () => {
       icon: <BookOpen size={20} />,
       color: 'text-orange-500',
       classes: [
-        { name: '閱讀素養班', desc: '長文閱讀理解訓練，培養批判性思考與分析能力', age: '小一~小二', time: '週六 下午', objectives: '提升長篇文章閱讀速度與理解力，培養擷取資訊、統統分析與批判思考的能力。', target: '閱讀速度慢、抓不到重點 or 希望能深入解讀文本的學生。', features: ['多元文本閱讀材料', '閱讀理解策略教學', 'PISA 題型實戰演練', '議題探討與思辨'], roadmap: ['擷取訊息能力', '統整解釋能力', '省思評鑑能力'] },
-        { name: '閱讀寫作班', desc: '結合經典文學導讀與創意寫作，提升表達力與文采', age: '小四~小六', time: '週六 上午', objectives: '培養閱讀興趣，激發寫作靈感，能流暢表達個人想法與情感。', target: '對寫作感到困難 or 希望提升文采的學生。', features: ['經典文學作品賞析', '感官摹寫與修辭練習', '創意引導與聯想訓練', '佳作觀摩與互評'], roadmap: ['基礎語句練習', '段落結構鋪陳', '完整篇章創作'] },
+        { 
+          name: '閱讀素養班', 
+          desc: '長文閱讀理解訓練，培養批判性思考與分析能力', 
+          age: '小一~小二', 
+          time: '週六 下午', 
+          objectives: '提升長篇文章閱讀速度與理解力，培養擷取資訊、統統分析與批判思考的能力。', 
+          target: '閱讀速度慢、抓不到重點 or 希望能深入解讀文本的學生。', 
+          features: ['多元文本閱讀材料', '閱讀理解策略教學', 'PISA 題型實戰演練', '議題探討與思辨'], 
+          roadmap: ['擷取訊息能力', '統整解釋能力', '省思評鑑能力'],
+          gradeDescs: {
+            '一年級': '專為小一新生設計，從基礎詞彙補充到圖像文字轉換，建立孩子對文字的敏感度與口語表達自信。',
+            '二年級': '透過心智圖引導，幫助小二學生掌握文章分段邏輯，將零散的想法轉化為結構完整的短文。'
+          },
+          gradeObjectives: {
+            '一年級': '建立基礎閱讀習慣，提升詞彙量，並能將簡單的圖像資訊轉化為文字表達。',
+            '二年級': '強化文章結構概念，學習運用心智圖進行內容發想與段落串聯。'
+          },
+          gradeTargets: {
+            '一年級': '剛升上小一，需要強化識字量與口語表達能力的學生。',
+            '二年級': '已具備基本識字量，但在寫作時常感到不知如何下筆或內容零碎的學生。'
+          },
+          gradeFeatures: {
+            '一年級': ['生活化詞彙補充', '看圖說故事訓練', '趣味繪本導讀', '口語表達遊戲'],
+            '二年級': ['心智圖寫作法', '短文結構引導', '創意聯想練習', '優美詞句積累']
+          },
+          gradeRoadmaps: {
+            '一年級': ['詞彙累積期', '句子組成期', '圖像轉文字期'],
+            '二年級': ['心智圖發想期', '段落串聯期', '短文創作期']
+          },
+          gradeHighlights: {
+            '一年級': [
+              '基礎的詞彙補充與應用。',
+              '能正確理解圖像，轉換成文字，並寫下造句，反之亦然。',
+              '閱讀與口語表達。'
+            ],
+            '二年級': [
+              '藉由心智圖，讓孩子學習分段與內容延伸的能力。',
+              '能正確理解圖像，轉換成文字，並寫下短文，反之亦然。'
+            ]
+          }
+        },
+        { 
+          name: '閱讀寫作班', 
+          desc: '結合經典文學導讀與創意寫作，提升表達力與文采', 
+          age: '小四~小六', 
+          time: '週六 上午', 
+          objectives: '培養閱讀興趣，激發寫作靈感，能流暢表達個人想法與情感。', 
+          target: '對寫作感到困難 or 希望提升文采的學生。', 
+          features: ['經典文學作品賞析', '感官摹寫與修辭練習', '創意引導與聯想訓練', '佳作觀摩與互評'], 
+          roadmap: ['基礎語句練習', '段落結構鋪陳', '完整篇章創作'],
+          gradeDescs: {
+            '中年級': '結合生活經驗與創意想像，引導孩子寫出情感真摯且段落分明的文章，享受創作的成就感。',
+            '高年級': '針對升學需求，強化修辭運用與國學常識，並透過思辨力訓練，為國中會考與私中考試做好全面準備。'
+          },
+          gradeObjectives: {
+            '中年級': '培養觀察力與感受力，學習運用豐富的感官摹寫，將生活經驗轉化為動人的篇章。',
+            '高年級': '深化文本分析能力，掌握多元寫作技巧，並建立紮實的國學常識基礎，應對進階考試需求。'
+          },
+          gradeTargets: {
+            '中年級': '希望提升文章豐富度，學習如何將生活觀察融入寫作的小三、小四學生。',
+            '高年級': '目標鎖定私中入學、資優鑑定或希望為國中會考打下深厚語文根基的小五、小六學生。'
+          },
+          gradeFeatures: {
+            '中年級': ['生活觀察筆記', '感官摹寫訓練', '創意故事接龍', '情感書寫引導'],
+            '高年級': ['修辭技巧進階', '國學常識專題', '思辨性議題寫作', '私中/會考題型解析']
+          },
+          gradeRoadmaps: {
+            '中年級': ['觀察感受期', '段落鋪陳期', '情感抒發期'],
+            '高年級': ['技巧深化期', '思辨表達期', '應試實戰期']
+          },
+          gradeHighlights: {
+            '中年級': [
+              '由生活經驗出發，寫出一篇段落分明、言辭恰當的文章。',
+              '創造力與想像力'
+            ],
+            '高年級': [
+              '藉由多元的寫作技巧，以及想法的練灶，為國中會考立下堅實的基礎。',
+              '思辨力與表達力',
+              '［私中預跑〕：私中考試一般來說會延伸至國中一年級的範圍，包括：基本修辭判讀、形音義（同音異字、一字多音、一字多義）、基本國學常識（天干地支、慣用語、季節風向、成語等）、閱讀素養（白話長文、唐詩、宋詞、元曲、世說新語、古文觀止等）。'
+            ]
+          }
+        },
       ]
     },
     {
@@ -251,6 +338,14 @@ const CourseRoadmap: React.FC = () => {
   const openDetail = (cls: any) => {
     setSelectedClass(cls);
     setModalMode('detail');
+    setActiveDetailTab('main');
+    if (cls.name === '進度數學班') {
+      setSelectedGrade('三年級');
+    } else if (cls.name === '閱讀素養班') {
+      setSelectedGrade('一年級');
+    } else if (cls.name === '閱讀寫作班') {
+      setSelectedGrade('中年級');
+    }
   };
 
   // Generate Mock Schedule Data
@@ -874,73 +969,163 @@ const CourseRoadmap: React.FC = () => {
         )}
 
         {selectedClass && modalMode === 'detail' && (
-           <div className="space-y-8 p-2">
-              {/* Header / Summary */}
-              <div className="bg-green-50/50 p-6 rounded-2xl border border-green-100">
-                 <p className="text-lg text-slate-700 leading-relaxed font-medium">
-                   {selectedClass.desc}
-                 </p>
-                 <div className="flex flex-wrap gap-4 mt-6">
-                    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-100">
-                       <Users size={18} className="text-green-600" />
-                       <span className="text-sm font-bold text-slate-700">對象：{selectedClass.target}</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-100">
-                       <Target size={18} className="text-green-600" />
-                       <span className="text-sm font-bold text-slate-700">目標：{selectedClass.objectives}</span>
-                    </div>
-                 </div>
+           <div className="space-y-6 p-2">
+              {/* Grade Selection for Detail Mode */}
+              {selectedClass.gradeHighlights && (
+                <div className="flex flex-wrap gap-2 p-1 bg-slate-100 rounded-xl">
+                   {(selectedClass.name === '閱讀素養班'
+                     ? ['一年級', '二年級']
+                     : ['中年級', '高年級']
+                   ).map((grade) => (
+                      <button
+                        key={grade}
+                        onClick={() => setSelectedGrade(grade)}
+                        className={`flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all ${
+                          selectedGrade === grade
+                            ? 'bg-white text-green-700 shadow-sm'
+                            : 'text-slate-500 hover:text-slate-700'
+                        }`}
+                      >
+                        {grade}
+                      </button>
+                   ))}
+                </div>
+              )}
+
+              {/* Content Tabs */}
+              <div className="flex flex-wrap gap-2 border-b border-slate-200">
+                {[
+                  { id: 'main', label: '主文' },
+                  { id: 'highlights', label: '教學重點' },
+                  { id: 'features', label: '課程特色' },
+                  { id: 'roadmap', label: '系列規劃' }
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveDetailTab(tab.id as any)}
+                    className={`pb-3 px-4 text-sm font-bold transition-all relative ${
+                      activeDetailTab === tab.id
+                        ? 'text-green-600'
+                        : 'text-slate-500 hover:text-slate-700'
+                    }`}
+                  >
+                    {tab.label}
+                    {activeDetailTab === tab.id && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
+                    )}
+                  </button>
+                ))}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 {/* Features */}
-                 <div>
+              {/* Tab Content */}
+              <div className="min-h-[300px]">
+                {activeDetailTab === 'main' && (
+                  <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <div className="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+                      <p className="text-lg text-slate-700 leading-relaxed font-medium">
+                        {selectedClass.gradeDescs && selectedClass.gradeDescs[selectedGrade] 
+                          ? selectedClass.gradeDescs[selectedGrade] 
+                          : selectedClass.desc}
+                      </p>
+                      <div className="flex flex-wrap gap-4 mt-6">
+                        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-100">
+                          <Users size={18} className="text-green-600" />
+                          <span className="text-sm font-bold text-slate-700">
+                            對象：{selectedClass.gradeTargets && selectedClass.gradeTargets[selectedGrade] 
+                              ? selectedClass.gradeTargets[selectedGrade] 
+                              : selectedClass.target}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-green-100">
+                          <Target size={18} className="text-green-600" />
+                          <span className="text-sm font-bold text-slate-700">
+                            目標：{selectedClass.gradeObjectives && selectedClass.gradeObjectives[selectedGrade] 
+                              ? selectedClass.gradeObjectives[selectedGrade] 
+                              : selectedClass.objectives}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeDetailTab === 'highlights' && (
+                  <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    {selectedClass.gradeHighlights && selectedClass.gradeHighlights[selectedGrade] ? (
+                      <div className="space-y-4">
+                        <h4 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                           <CheckCircle2 className="text-green-600" size={20} />
+                           【{selectedGrade} 教學重點】
+                        </h4>
+                        <ul className="space-y-3">
+                           {selectedClass.gradeHighlights[selectedGrade].map((highlight, i) => (
+                              <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                                 <span className="text-green-500 font-bold shrink-0 mt-0.5 text-base">˙</span>
+                                 <span className="text-base text-slate-700 whitespace-pre-line leading-relaxed">{highlight}</span>
+                              </li>
+                           ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <div className="text-center py-10 text-slate-400">暫無教學重點資料</div>
+                    )}
+                  </div>
+                )}
+
+                {activeDetailTab === 'features' && (
+                  <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                       <Lightbulb className="text-yellow-500" />
+                       <Lightbulb className="text-yellow-500" size={20} />
                        課程特色
                     </h4>
                     <ul className="space-y-3">
-                       {selectedClass.features && selectedClass.features.map((feat: string, i: number) => (
+                       {(selectedClass.gradeFeatures && selectedClass.gradeFeatures[selectedGrade] 
+                         ? selectedClass.gradeFeatures[selectedGrade] 
+                         : selectedClass.features).map((feat: string, i: number) => (
                           <li key={i} className="flex items-start gap-3 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
                              <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={18} />
-                             <span className="text-slate-700">{feat}</span>
+                             <span className="text-base text-slate-700 leading-relaxed">{feat}</span>
                           </li>
                        ))}
                     </ul>
-                 </div>
+                  </div>
+                )}
 
-                 {/* Roadmap */}
-                 <div>
+                {activeDetailTab === 'roadmap' && (
+                  <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                       <Waypoints className="text-green-600" />
+                       <Waypoints className="text-green-600" size={20} />
                        系列課程規劃
                     </h4>
                     <div className="space-y-4">
-                       {selectedClass.roadmap && selectedClass.roadmap.map((step: string, i: number) => (
+                       {(selectedClass.gradeRoadmaps && selectedClass.gradeRoadmaps[selectedGrade] 
+                         ? selectedClass.gradeRoadmaps[selectedGrade] 
+                         : selectedClass.roadmap).map((step: string, i: number, arr: string[]) => (
                           <div key={i} className="flex items-center gap-4 relative group">
                              {/* Vertical Line */}
-                             {i !== selectedClass.roadmap.length - 1 && (
+                             {i !== arr.length - 1 && (
                                 <div className="absolute left-[19px] top-8 bottom-[-16px] w-0.5 bg-slate-200"></div>
                              )}
                              
-                             <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold shrink-0 z-10 border-4 border-white shadow-sm">
+                             <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold shrink-0 z-10 border-4 border-white shadow-sm text-base">
                                 {i + 1}
                              </div>
-                             <div className="flex-1 bg-white p-3 rounded-xl border border-slate-100 shadow-sm text-slate-700 font-medium">
+                             <div className="flex-1 bg-white p-3 rounded-xl border border-slate-100 shadow-sm text-base text-slate-700 font-medium leading-relaxed">
                                 {step}
                              </div>
                           </div>
                        ))}
                     </div>
-                 </div>
+                  </div>
+                )}
               </div>
               
               {/* Call to Action */}
-              <div className="pt-8 border-t border-slate-100 text-center">
+              <div className="pt-6 border-t border-slate-100 text-center">
                  <a 
                    href="#contact" 
                    onClick={() => setSelectedClass(null)}
-                   className="inline-flex items-center gap-2 px-8 py-4 bg-green-600 text-white font-bold rounded-xl shadow-lg hover:bg-green-700 hover:shadow-green-500/30 transition-all transform hover:-translate-y-1"
+                   className="inline-flex items-center gap-2 px-8 py-3 bg-green-600 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-green-700 hover:shadow-green-500/30 transition-all transform hover:-translate-y-1"
                  >
                     立即預約試聽 <ArrowRight size={20} />
                  </a>
