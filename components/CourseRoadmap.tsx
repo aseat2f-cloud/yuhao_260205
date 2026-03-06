@@ -128,8 +128,8 @@ const CourseRoadmap: React.FC = () => {
           features: ['多元文本閱讀材料', '閱讀理解策略教學', 'PISA 題型實戰演練', '議題探討與思辨'], 
           roadmap: ['擷取訊息能力', '統整解釋能力', '省思評鑑能力'],
           gradeDescs: {
-            '一年級': '專為小一新生設計，從基礎詞彙補充到圖像文字轉換，建立孩子對文字的敏感度與口語表達自信。',
-            '二年級': '透過心智圖引導，幫助小二學生掌握文章分段邏輯，將零散的想法轉化為結構完整的短文。'
+            '一年級': '專為小一新生設計，從基礎詞彙補充引導孩子建立文字敏感度。透過趣味繪本與看圖說故事訓練，將圖像資訊轉化為文字表達，並在互動中培養口語自信。這是開啟閱讀興趣、建立良好習慣的關鍵啟蒙期，讓孩子在輕鬆氛圍中奠定紮實語文基礎。',
+            '二年級': '引進心智圖法作為思考工具，幫助孩子學習邏輯分類與內容延伸。重點在於強化文章結構概念，引導學生掌握段落串聯技巧，將生活細節轉化為結構完整的短文。透過系統化引導與優美詞句積累，孩子將不再畏懼下筆，自信運用文字記錄生活，展現邏輯思維。'
           },
           gradeObjectives: {
             '一年級': '建立基礎閱讀習慣，提升詞彙量，並能將簡單的圖像資訊轉化為文字表達。',
@@ -169,8 +169,8 @@ const CourseRoadmap: React.FC = () => {
           features: ['經典文學作品賞析', '感官摹寫與修辭練習', '創意引導與聯想訓練', '佳作觀摩與互評'], 
           roadmap: ['基礎語句練習', '段落結構鋪陳', '完整篇章創作'],
           gradeDescs: {
-            '中年級': '結合生活經驗與創意想像，引導孩子寫出情感真摯且段落分明的文章，享受創作的成就感。',
-            '高年級': '針對升學需求，強化修辭運用與國學常識，並透過思辨力訓練，為國中會考與私中考試做好全面準備。'
+            '中年級': '以生活經驗為核心，結合創意想像引導孩子寫出情感真摯的文章。強化感官摹寫訓練，教導孩子運用多元角度觀察世界，讓文字更具感染力。透過經典文學導讀與創意故事接龍，激發創作靈感，讓寫作不再枯燥，而是一場充滿成就感的自我表達旅程，提升文字駕馭力。',
+            '高年級': '針對升學需求，結合國學常識與進階修辭技巧，訓練批判性思考與邏輯論證能力。精選多元文本深度分析，掌握不同文體寫作策略，為國中會考與私中考試做好全方位準備。這不僅是技巧磨練，更是思維層次的提升，讓孩子面對複雜考題時能冷靜分析、精準表達。'
           },
           gradeObjectives: {
             '中年級': '培養觀察力與感受力，學習運用豐富的感官摹寫，將生活經驗轉化為動人的篇章。',
@@ -995,7 +995,7 @@ const CourseRoadmap: React.FC = () => {
               {/* Content Tabs */}
               <div className="flex flex-wrap gap-2 border-b border-slate-200">
                 {[
-                  { id: 'main', label: '主文' },
+                  { id: 'main', label: '課程概述' },
                   { id: 'highlights', label: '教學重點' },
                   { id: 'features', label: '課程特色' },
                   { id: 'roadmap', label: '系列規劃' }
@@ -1022,7 +1022,7 @@ const CourseRoadmap: React.FC = () => {
                 {activeDetailTab === 'main' && (
                   <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <div className="bg-green-50/50 p-6 rounded-2xl border border-green-100">
-                      <p className="text-lg text-slate-700 leading-relaxed font-medium">
+                      <p className="text-base text-slate-600 leading-relaxed font-medium">
                         {selectedClass.gradeDescs && selectedClass.gradeDescs[selectedGrade] 
                           ? selectedClass.gradeDescs[selectedGrade] 
                           : selectedClass.desc}
