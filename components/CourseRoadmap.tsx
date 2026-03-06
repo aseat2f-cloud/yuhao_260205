@@ -993,26 +993,24 @@ const CourseRoadmap: React.FC = () => {
               )}
 
               {/* Content Tabs */}
-              <div className="flex flex-wrap gap-2 border-b border-slate-200">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {[
-                  { id: 'main', label: '課程概述' },
-                  { id: 'highlights', label: '教學重點' },
-                  { id: 'features', label: '課程特色' },
-                  { id: 'roadmap', label: '系列規劃' }
+                  { id: 'main', label: '課程概述', icon: <FileText size={16} /> },
+                  { id: 'highlights', label: '教學重點', icon: <CheckCircle2 size={16} /> },
+                  { id: 'features', label: '課程特色', icon: <Lightbulb size={16} /> },
+                  { id: 'roadmap', label: '系列規劃', icon: <Waypoints size={16} /> }
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveDetailTab(tab.id as any)}
-                    className={`pb-3 px-4 text-sm font-bold transition-all relative ${
+                    className={`flex items-center justify-center gap-2 py-3 px-2 rounded-xl text-sm font-bold transition-all border-2 ${
                       activeDetailTab === tab.id
-                        ? 'text-green-600'
-                        : 'text-slate-500 hover:text-slate-700'
+                        ? 'bg-green-600 text-white border-green-600 shadow-md shadow-green-200'
+                        : 'bg-white text-slate-500 border-slate-100 hover:border-green-200 hover:text-green-600'
                     }`}
                   >
-                    {tab.label}
-                    {activeDetailTab === tab.id && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-600 rounded-full"></div>
-                    )}
+                    {tab.icon}
+                    <span>{tab.label}</span>
                   </button>
                 ))}
               </div>
