@@ -1,6 +1,6 @@
 
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { ArrowUp, Loader2, HelpCircle } from 'lucide-react';
+import { ArrowUp, Loader2, HelpCircle, MessageCircle } from 'lucide-react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import ChatBot from './components/ChatBot';
 import ContactForm from './components/ContactForm';
 import HomeBanner from './components/HomeBanner';
+import LineConsultationModal from './components/LineConsultationModal';
 import ProgramPlanning from './components/ProgramPlanning';
 import OutstandingResults from './components/OutstandingResults';
 import HonorRoll from './components/HonorRoll';
@@ -122,6 +123,7 @@ const ALL_NEWS: NewsItem[] = [...NEWS_HONORS, ...NEWS_EVENTS, ...NEWS_NORMAL];
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isLineModalOpen, setIsLineModalOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -138,6 +140,10 @@ function App() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openLineConsultation = () => {
+    setIsLineModalOpen(true);
   };
 
   const LoadingScreen = () => (
@@ -294,7 +300,7 @@ function App() {
       <Header 
         onNavigate={setCurrentPage} 
         currentPage={currentPage} 
-        onOpenChat={() => setIsChatOpen(true)}
+        onOpenChat={() => setIsLineModalOpen(true)}
       />
       
       <main>
@@ -304,11 +310,27 @@ function App() {
 
       <Footer />
       <ChatBot isOpen={isChatOpen} onToggle={setIsChatOpen} />
+      <LineConsultationModal isOpen={isLineModalOpen} onClose={() => setIsLineModalOpen(false)} />
+      
+      {/* Desktop Floating LINE Button */}
+      <button
+        onClick={openLineConsultation}
+        className={`hidden lg:flex fixed bottom-6 right-6 z-[45] p-4 rounded-full bg-[#06C755] text-white shadow-lg hover:bg-[#05b34c] hover:scale-110 transition-all duration-300 group ${isLineModalOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`}
+        aria-label="LINE 諮詢"
+      >
+        <MessageCircle size={28} />
+        <span className="absolute right-full mr-3 px-3 py-1.5 bg-slate-800 text-white text-sm font-bold rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          線上諮詢
+        </span>
+        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white animate-bounce">
+          1
+        </span>
+      </button>
       
       <MobileFloatingNav 
         currentPage={currentPage} 
         theme={getPageTheme()} 
-        onOpenChat={() => setIsChatOpen(true)}
+        onOpenChat={openLineConsultation}
         showScrollTop={showScrollTop}
         onScrollTop={scrollToTop}
       />

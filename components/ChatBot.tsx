@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, Loader2 } from 'lucide-react';
+import { X, Send, Bot, Loader2 } from 'lucide-react';
 import { ChatMessage } from '../types';
 import { sendMessageToGemini } from '../services/geminiService';
 
@@ -67,16 +67,6 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
 
   return (
     <>
-      {/* Toggle Button - Desktop Only (lg:flex) to avoid overlap with MobileFloatingNav (visible < lg) */}
-      <button
-        onClick={() => onToggle(true)}
-        className={`hidden lg:flex fixed bottom-6 right-6 z-[90] p-4 rounded-full bg-primary-600 text-white ring-2 ring-white/50 hover:bg-primary-700 hover:scale-105 transition-all duration-300 ${isOpen ? 'hidden' : 'flex'}`}
-        aria-label="Open Chat"
-      >
-        <MessageCircle size={28} />
-        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">1</span>
-      </button>
-
       {/* Chat Window */}
       <div 
         className={`fixed bottom-0 md:bottom-6 right-0 md:right-6 w-full md:w-[400px] h-[85vh] md:h-[500px] bg-white md:rounded-2xl rounded-t-2xl shadow-2xl z-[90] flex flex-col overflow-hidden transition-all duration-300 border border-slate-200 transform origin-bottom-right ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}`}
@@ -91,7 +81,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
               <h3 className="font-bold text-sm">育豪 AI 課程顧問</h3>
               <p className="text-xs text-primary-100 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
-                線上諮詢中
+                AI 顧問服務中
               </p>
             </div>
           </div>
