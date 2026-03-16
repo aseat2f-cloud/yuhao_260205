@@ -176,7 +176,7 @@ const PROGRAMS_DATA: Record<string, ProgramData> = {
     teacherSectionId: 'senior-teachers',
     categories: [
       {
-        id: 'g10',
+        id: 'g10_pre',
         name: '升高一',
         images: [
           { url: convertDropboxLink('https://www.dropbox.com/scl/fi/ngastj91xhedgevtfi8tn/_-33-705x381.jpg?rlkey=6sv7heubjzfbz5p5h4uyrqbw1&dl=0'), caption: '銜接國高中課程落差，強化核心觀念，引導學生調整讀書方法，培養自主學習與探究實作能力。' },
@@ -184,28 +184,32 @@ const PROGRAMS_DATA: Record<string, ProgramData> = {
         ]
       },
       {
-        id: 'g11',
-        name: '升高二',
+        id: 'g10',
+        name: '高一',
         images: [
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/z30qj5je1q6gew92obd3j/020.jpg?rlkey=37gi6a9ncyfuk16xi6lhfc42j&dl=0'), caption: '深化學科知識，面對選組分流挑戰，提供加深加廣課程，全面提升各科實力，建立學科自信。' },
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/ztq96vz6vf6aggmu801ne/021.jpg?rlkey=9755nld1ujkgmp8sg8xkjsb0p&dl=0'), caption: '同步累積學習歷程檔案與科系探索，透過專業諮詢協助學生釐清志向，為學測與申請入學累積優勢。' }
+          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/z30qj5je1q6gew92obd3j/020.jpg?rlkey=37gi6a9ncyfuk16xi6lhfc42j&dl=0'), caption: '高一基礎扎根，同步校內進度，強化數理邏輯與語文素養，建立高中學習的穩固基石。' }
+        ]
+      },
+      {
+        id: 'g11',
+        name: '高二',
+        images: [
+          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/ztq96vz6vf6aggmu801ne/021.jpg?rlkey=9755nld1ujkgmp8sg8xkjsb0p&dl=0'), caption: '高二實力拉開差距，深入學科核心觀念，面對選組挑戰，提供加深加廣課程，全面提升競爭力。' }
         ]
       },
       {
         id: 'g12',
-        name: '升高三',
+        name: '高三',
         images: [
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/o9k3hmtz0mr7kfalig4nn/022.jpg?rlkey=k0yw6prgpjcpechkew5tbv6py&dl=0'), caption: '全方位學測複習與模考演練，精準掌握最新命題趨勢，透過大量題型練習提升解題速度與準確率。' },
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/arxryojkkdhwn6q3wxbhk/023.jpg?rlkey=0t51d4noouc516yypd8tsgiuu&dl=0'), caption: '針對個人弱點進行精準補強，搭配申請入學模擬面試與備審資料輔導，全力協助學生直攻頂尖大學。' }
+          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/o9k3hmtz0mr7kfalig4nn/022.jpg?rlkey=k0yw6prgpjcpechkew5tbv6py&dl=0'), caption: '高三學測與分科測驗全方位備考，精準掌握大考趨勢，透過大量模考與解題技巧訓練，直攻頂尖大學。' },
+          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/arxryojkkdhwn6q3wxbhk/023.jpg?rlkey=0t51d4noouc516yypd8tsgiuu&dl=0'), caption: '針對個人弱點精準補強，搭配學習歷程檔案輔導與面試演練，全力協助學生實現升學夢想。' }
         ]
       },
       {
-        id: 'sprint',
-        name: '寒暑衝刺',
+        id: 'study_hall',
+        name: 'K書班',
         images: [
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/arxryojkkdhwn6q3wxbhk/023.jpg?rlkey=0t51d4noouc516yypd8tsgiuu&dl=0'), caption: '把握寒暑假黃金期，集中火力進行高強度衝刺，透過密集訓練與規律作息，讓成績大幅躍進。' },
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/ngastj91xhedgevtfi8tn/_-33-705x381.jpg?rlkey=6sv7heubjzfbz5p5h4uyrqbw1&dl=0'), caption: '提供規律的作息安排與高強度的學習規劃，營造良性競爭氛圍，激發學生的最大潛能與鬥志。' },
-          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/41a52kh3dmp5a7j5kol8b/_-35-705x381.jpg?rlkey=wuyxh4koljibq9d0apzi3xg9n&dl=0'), caption: '專業導師全程陪伴，即時解決學習疑難，透過個別化指導與心理建設，讓學生保持最佳備考狀態。' }
+          { url: convertDropboxLink('https://www.dropbox.com/scl/fi/xte7eyduljfdtssl0e10r/K.jpg?rlkey=w49ksu1egkn6b6onvj1mxvyu3&dl=0'), caption: '專業K書環境，嚴格作息管理，搭配各科老師駐班解惑，讓學生在專注氛圍中發揮最大學習效益。' }
         ]
       }
     ]

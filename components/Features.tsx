@@ -1,6 +1,6 @@
 
 import React, { useState, useRef } from 'react';
-import { Lightbulb, Heart, Target, Trophy, GraduationCap, ShieldCheck, ChevronDown, ChevronUp, X, Play, Sparkles, Youtube, Crown } from 'lucide-react';
+import { Lightbulb, Heart, Target, Trophy, GraduationCap, ShieldCheck, X, Play, Sparkles, Youtube, Crown } from 'lucide-react';
 import { FeatureItem } from '../types';
 import Modal from './Modal';
 
@@ -161,21 +161,32 @@ const Features: React.FC = () => {
         </div>
 
         {/* Toggle Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center relative">
+          {!isExpanded && (
+            <div className="absolute inset-0 -m-3 rounded-full border-2 border-dashed border-yellow-400/40 animate-spin-slow pointer-events-none" />
+          )}
           <button
             ref={buttonRef}
             onClick={toggleExpand}
-            className={`group relative px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-2 shadow-md ${
+            className={`group relative px-12 py-5 rounded-full font-bold text-xl transition-all duration-500 flex items-center justify-center shadow-lg overflow-hidden ${
               isExpanded 
                 ? 'bg-slate-100 text-slate-600 hover:bg-slate-200' 
-                : 'bg-yellow-400 text-slate-900 hover:bg-yellow-300 hover:shadow-xl hover:scale-105'
+                : 'bg-yellow-400 text-slate-900 hover:bg-yellow-300 hover:shadow-2xl hover:scale-105 active:scale-95'
             }`}
           >
-            {isExpanded ? (
-              <>收起詳細介紹 <ChevronUp size={20} /></>
-            ) : (
-              <>我們哪裡不一樣 <ChevronDown size={20} className="group-hover:translate-y-1 transition-transform" /></>
+            {!isExpanded && (
+              <>
+                {/* Shimmer Effect (Hover Only) */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none"></div>
+                
+                {/* Subtle Glow Pulse */}
+                <div className="absolute inset-0 rounded-full bg-yellow-300/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              </>
             )}
+
+            <span className="relative z-10">
+              {isExpanded ? '收起詳細介紹' : '我們哪裡不一樣'}
+            </span>
           </button>
         </div>
 
@@ -343,7 +354,6 @@ const Features: React.FC = () => {
                   onClick={toggleExpand}
                   className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-medium px-6 py-3 rounded-full hover:bg-slate-50 transition-all"
                 >
-                  <ChevronUp size={18} />
                   收起內容
                 </button>
               </div>

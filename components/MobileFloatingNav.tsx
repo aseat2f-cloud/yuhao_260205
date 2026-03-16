@@ -43,9 +43,8 @@ const MobileFloatingNav: React.FC<MobileFloatingNavProps> = ({
       case 'senior':
         return [
           { label: '課程班別', href: '#course-roadmap' },
-          { label: '教學成果', href: '#outstanding-results' },
-          { label: '師資陣容', href: '#senior-teachers' },
-          { label: '家長見證', href: '#testimonials' },
+          { label: '學員金榜', href: '#honor-roll' },
+          { label: '環境介紹', href: '#environment' },
         ];
       case 'bulletin':
         // No quick links for bulletin, only action buttons on the right
