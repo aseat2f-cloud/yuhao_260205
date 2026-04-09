@@ -94,7 +94,7 @@ const SeniorPage: React.FC<SeniorPageProps> = ({ heroNews, onNavigate }) => {
       <HonorRoll variant="senior" theme="purple" />
 
       {/* 5. Environment Introduction (環境介紹) */}
-      <EnvironmentIntro />
+      <EnvironmentIntro theme="purple" />
 
     </div>
   );

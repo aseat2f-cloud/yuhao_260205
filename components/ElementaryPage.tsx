@@ -2,9 +2,9 @@
 import React from 'react';
 import Hero from './Hero';
 import OutstandingResults from './OutstandingResults';
-import StudentTestimonials from './StudentTestimonials';
 import CourseRoadmap from './CourseRoadmap';
 import HonorRoll from './HonorRoll';
+import EnvironmentIntro from './EnvironmentIntro';
 import ElementaryBanner from './ElementaryBanner';
 import { NewsItem, PageType } from '../types';
 import { MessageCircle } from 'lucide-react';
@@ -20,7 +20,7 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
     { label: '課程班別', href: '#course-roadmap' },
     { label: '教學成果', href: '#outstanding-results' },
     { label: '學員金榜', href: '#honor-roll' },
-    { label: '學員心得', href: '#testimonials' },
+    { label: '環境介紹', href: '#environment' },
   ];
 
   return (
@@ -89,14 +89,23 @@ const ElementaryPage: React.FC<ElementaryPageProps> = ({ heroNews, onNavigate })
       {/* 1. 亮眼成績 (ID: outstanding-results) */}
       <OutstandingResults theme="green" />
 
-      {/* 2. 學員心得 */}
-      <StudentTestimonials theme="green" />
-
       {/* 3. 課程規劃 (ID: course-roadmap) - Has internal green theme */}
       <CourseRoadmap />
 
-      {/* 5. 榮耀金榜 (Elementary Specific) */}
+      {/* 4. 榮耀金榜 (Elementary Specific) */}
       <HonorRoll variant="elementary" theme="green" />
+
+      {/* 5. 環境介紹 (ID: environment) */}
+      <EnvironmentIntro 
+        theme="green" 
+        images={[
+          "https://www.dropbox.com/scl/fi/j45gub1h2qkkn4aj59hya/70.jpg?rlkey=54pjut604aaqnfwsile0bxvm7&raw=1",
+          "https://www.dropbox.com/scl/fi/k2nq2hkjqx9hjfgxd7hhd/71.jpg?rlkey=hdwxq06xkgeise7ssvcbg4f5o&raw=1",
+          "https://www.dropbox.com/scl/fi/637sfvc6sb90n1w55clp9/72.jpg?rlkey=xh8fsrjehlxuuheknauzlku62&raw=1",
+          "https://www.dropbox.com/scl/fi/m105s5r7mae72g37s04t3/06.jpg?rlkey=ixphixrunndduwk248052w2f1&raw=1",
+          "https://www.dropbox.com/scl/fi/cupp9e6blxrl0eucclriy/04.jpg?rlkey=q8jt2hyizn99n8ps5g1crzmzt&raw=1"
+        ]}
+      />
 
     </div>
   );

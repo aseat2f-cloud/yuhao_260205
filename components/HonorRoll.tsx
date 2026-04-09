@@ -192,7 +192,7 @@ const HonorRoll: React.FC<HonorRollProps> = ({ variant = 'default', theme = 'pri
   };
 
   const getThemeColorClass = () => {
-    if (activeTab === 'gifted') return 'teal';
+    if (activeTab === 'gifted') return 'emerald';
     if (activeTab === 'cap' || activeTab === 'perfect' || activeTab === 'school_rank1') return 'red';
     if (activeTab === 'english') return 'purple';
     if (activeTab === 'rank_10') return 'orange';
@@ -302,7 +302,7 @@ const HonorRoll: React.FC<HonorRollProps> = ({ variant = 'default', theme = 'pri
           <button
             onClick={() => handleTabChange('gifted')}
             className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
-              activeTab === 'gifted' ? 'bg-white text-teal-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              activeTab === 'gifted' ? 'bg-white text-emerald-500 shadow-sm' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             <Star size={16} /> 
@@ -318,7 +318,7 @@ const HonorRoll: React.FC<HonorRollProps> = ({ variant = 'default', theme = 'pri
         <button
           onClick={() => handleTabChange('gifted')}
           className={`px-4 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
-            activeTab === 'gifted' ? 'bg-white text-teal-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'gifted' ? 'bg-white text-emerald-500 shadow-sm' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           <Star size={16} /> 
@@ -405,7 +405,7 @@ const HonorRoll: React.FC<HonorRollProps> = ({ variant = 'default', theme = 'pri
                   {/* Avatar Section */}
                   <div className="relative shrink-0">
                     <div className={`w-12 h-12 rounded-full overflow-hidden border-2 shadow-sm transition-colors duration-300 ${
-                        activeColor === 'teal' ? 'border-teal-100 group-hover:border-teal-300' 
+                        activeColor === 'emerald' ? 'border-emerald-100 group-hover:border-emerald-300' 
                         : activeColor === 'red' ? 'border-red-100 group-hover:border-red-300' 
                         : activeColor === 'purple' ? 'border-purple-100 group-hover:border-purple-300'
                         : activeColor === 'orange' ? 'border-orange-100 group-hover:border-orange-300'
@@ -432,7 +432,7 @@ const HonorRoll: React.FC<HonorRollProps> = ({ variant = 'default', theme = 'pri
                     <div className="flex flex-col">
                       <span className="text-[11px] text-slate-500 font-medium mb-0.5">{item.yearPrefix}</span>
                       <span className={`text-sm font-extrabold truncate tracking-tight ${
-                          activeColor === 'teal' ? 'text-teal-600' 
+                          activeColor === 'emerald' ? 'text-emerald-500' 
                           : activeColor === 'red' ? 'text-red-600' 
                           : activeColor === 'purple' ? 'text-purple-600'
                           : activeColor === 'orange' ? 'text-orange-600'

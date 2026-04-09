@@ -11,7 +11,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: '課程班別', id: 'course-roadmap' },
       { label: '教學成果', id: 'outstanding-results' },
       { label: '學員金榜', id: 'honor-roll' },
-      { label: '學員心得', id: 'testimonials' },
+      { label: '環境介紹', id: 'environment' },
     ]
   },
   { 
