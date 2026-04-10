@@ -161,10 +161,7 @@ const Features: React.FC = () => {
         </div>
 
         {/* Toggle Button */}
-        <div className="flex justify-center relative">
-          {!isExpanded && (
-            <div className="absolute inset-0 -m-3 rounded-full border-2 border-dashed border-yellow-400/40 animate-spin-slow pointer-events-none" />
-          )}
+        <div className="flex justify-center">
           <button
             ref={buttonRef}
             onClick={toggleExpand}
