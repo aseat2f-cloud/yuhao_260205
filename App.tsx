@@ -5,7 +5,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Footer from './components/Footer';
-import ChatBot from './components/ChatBot';
 import ContactForm from './components/ContactForm';
 import HomeBanner from './components/HomeBanner';
 import LineConsultationModal from './components/LineConsultationModal';
@@ -122,7 +121,6 @@ const ALL_NEWS: NewsItem[] = [...NEWS_HONORS, ...NEWS_EVENTS, ...NEWS_NORMAL];
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
-  const [isChatOpen, setIsChatOpen] = useState(false);
   const [isLineModalOpen, setIsLineModalOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -309,7 +307,6 @@ function App() {
       </main>
 
       <Footer />
-      <ChatBot isOpen={isChatOpen} onToggle={setIsChatOpen} />
       <LineConsultationModal isOpen={isLineModalOpen} onClose={() => setIsLineModalOpen(false)} />
       
       {/* Desktop Floating LINE Button */}

@@ -27,10 +27,6 @@
       if (!window.process.env) {
         window.process.env = {};
       }
-      // Ensure API_KEY exists to prevent undefined access crash
-      if (!window.process.env.API_KEY) {
-        window.process.env.API_KEY = ''; 
-      }
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
